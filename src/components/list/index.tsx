@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../contexts/themeContext";
 
-// Interfaces
 export interface PokemonData {
     name: string;
     id: number;
@@ -25,7 +24,6 @@ export interface PokemonType {
     };
 }
 
-// Props transientes
 export interface ComponentsProps {
     $bg?: string;
     $color?: string;
@@ -35,7 +33,6 @@ interface PokemonListProps {
     showExtra: boolean;
 }
 
-// Styled Components
 const ListTitle = styled.h2`
   font-size: 2rem;
   text-transform: uppercase;
@@ -117,7 +114,6 @@ const Filter = styled.select<ComponentsProps>`
   color: ${({ $color }) => $color};
 `;
 
-// Funções de fetch
 async function fetchRandomPokemonlist(
     setPokemonList: (data: PokemonData[]) => void,
     setIsLoading: (state: boolean) => void
@@ -200,7 +196,6 @@ async function fetchExtraPokemonList(
     }
 }
 
-// Componente principal
 export const PokemonList = ({ showExtra }: PokemonListProps) => {
     const [extraPokemonList, setExtraPokemonList] = useState<PokemonData[]>([]);
     const [pokemonList, setPokemonList] = useState<PokemonData[]>([]);
@@ -210,7 +205,7 @@ export const PokemonList = ({ showExtra }: PokemonListProps) => {
 
     const shuffleList = () => {
         setSelectedType(''); // reseta o filtro
-        fetchRandomPokemonlist(setPokemonList, setIsLoading); // força buscar lista aleatória
+        fetchRandomPokemonlist(setPokemonList, setIsLoading); 
     };
 
     useEffect(() => {

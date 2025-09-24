@@ -10,7 +10,6 @@ interface MenuProps {
   showExtra: boolean;
 }
 
-// Tipagem para props transientes
 interface NavegationProps extends ComponentsProps {
   $bg: string;
 }

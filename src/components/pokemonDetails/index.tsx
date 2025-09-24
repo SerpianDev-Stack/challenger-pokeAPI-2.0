@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { ThemeContext } from "../../contexts/themeContext";
 import type { ComponentsProps } from "../list";
 
-// Tipagem para props transientes
 type DetailContainerProps = ComponentsProps & {
   $bg: string;
 };
