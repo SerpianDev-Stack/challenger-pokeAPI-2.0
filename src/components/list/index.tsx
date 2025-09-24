@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../contexts/themeContext";
 
-// Interfaces e styled-components
+// Interfaces
 export interface PokemonData {
     name: string;
     id: number;
@@ -25,93 +25,103 @@ export interface PokemonType {
     };
 }
 
+// Props transientes
 export interface ComponentsProps {
-    bg?: string;
-    color?: string;
+    $bg?: string;
+    $color?: string;
 }
 
 interface PokemonListProps {
     showExtra: boolean;
 }
 
+// Styled Components
 const ListTitle = styled.h2`
-font-size:2rem;
-text-transform:uppercase;
-padding:2rem;
-font-family: 'Orbitron';
-background-image: linear-gradient(135deg, var(--teal-200), var(--cyan-500));
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-color: transparent;
-`
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 2rem;
+  font-family: 'Orbitron';
+  background-image: linear-gradient(135deg, var(--teal-200), var(--cyan-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+`;
 
 const ListContent = styled.main<ComponentsProps>`
-display:flex;
-width:100%;
-flex-direction: column;
-align-items:center;
-height: 100%;
-background-color: ${({ bg }) => bg};
-`
-const PokemonName = styled.h3`
-font-size: 1.5rem;
-color: var(--cyan-500);
-text-transform: uppercase;
-font-family: 'Orbitron';
-`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: ${({ $bg }) => $bg};
+`;
 
-const CostumeList = styled.ul`
-list-style-type: none;
-text-transform: uppercase;
-font-family: 'Open Sans Condensed';
-text-align:center;
-color: ${({ color }) => color};
-`
+const PokemonName = styled.h3`
+  font-size: 1.5rem;
+  color: var(--cyan-500);
+  text-transform: uppercase;
+  font-family: 'Orbitron';
+`;
+
+const CostumeList = styled.ul<ComponentsProps>`
+  list-style-type: none;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  text-align: center;
+  color: ${({ $color }) => $color};
+`;
 
 const PokemonContainer = styled.div`
-display: flex;
-flex-direction:column;
-align-items:center;
-padding:2rem;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+`;
 
 const StyledButton = styled.button`
-background: transparent;
-color: var(--teal-200);
-border: 1px solid var(--teal-200); 
-font-weight: 700;
-font-size: 14px;
-letter-spacing: 0.5px;
-font-family: 'Open Sans Condensed';
-padding: 12px 24px;
-border-radius: 4px; /* Borda levemente arredondada para um estilo moderno */
-cursor: pointer;
-transition: all 0.3s ease;
-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+  background: transparent;
+  color: var(--teal-200);
+  border: 1px solid var(--teal-200);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-family: 'Open Sans Condensed';
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 
-&:hover {
-background-color: var(--teal-200);
-color: var(--navy-950);
-box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.6); 
-}
-&:active {
-transform: translateY(1px);
-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.8);
-}
-`
-const Filter = styled.select`
-padding: 8px;
-font-size: 14px;
-border: 1px solid var(--teal-200);
-border-radius: 4px;
-background-color: var(--navy-900);
-color: var(--white);
-margin-bottom: 2rem;
-margin-left:4rem;
-`
+  &:hover {
+    background-color: var(--teal-200);
+    color: var(--navy-950);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.6);
+  }
 
-async function fetchRandomPokemonlist(setPokemonList: (data: PokemonData[]) => void, setIsLoading: (state: boolean) => void) {
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.8);
+  }
+`;
+
+const Filter = styled.select<ComponentsProps>`
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid var(--teal-200);
+  border-radius: 4px;
+  background-color: var(--navy-900);
+  color: var(--white);
+  margin-bottom: 2rem;
+  background-color: ${({ $bg }) => $bg};
+  color: ${({ $color }) => $color};
+`;
+
+// Funções de fetch
+async function fetchRandomPokemonlist(
+    setPokemonList: (data: PokemonData[]) => void,
+    setIsLoading: (state: boolean) => void
+) {
     try {
         setIsLoading(true);
         const countResponse = await fetch('https://pokeapi.co/api/v2/pokemon-species/');
@@ -120,10 +130,12 @@ async function fetchRandomPokemonlist(setPokemonList: (data: PokemonData[]) => v
         const randomOffset = Math.floor(Math.random() * (totalPokemon - 10));
         const listResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${randomOffset}`);
         const listData = await listResponse.json();
+
         const pokemonPromises = listData.results.map(async (pokemon: PokemonListItem) => {
             const detailsResponse = await fetch(pokemon.url);
             return await detailsResponse.json();
         });
+
         const fullPokemonData = await Promise.all(pokemonPromises);
         setPokemonList(fullPokemonData);
     } catch (error) {
@@ -133,7 +145,11 @@ async function fetchRandomPokemonlist(setPokemonList: (data: PokemonData[]) => v
     }
 }
 
-async function fetchPokemonByType(type: string, setPokemonList: (data: PokemonData[]) => void, setIsLoading: (state: boolean) => void) {
+async function fetchPokemonByType(
+    type: string,
+    setPokemonList: (data: PokemonData[]) => void,
+    setIsLoading: (state: boolean) => void
+) {
     setIsLoading(true);
     try {
         const typeResponse = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
@@ -152,13 +168,15 @@ async function fetchPokemonByType(type: string, setPokemonList: (data: PokemonDa
     }
 }
 
-async function fetchExtraPokemonList(type: string, setExtraPokemonList: (data: PokemonData[]) => void) {
+async function fetchExtraPokemonList(
+    type: string,
+    setExtraPokemonList: (data: PokemonData[]) => void
+) {
     try {
         let listData = { results: [] };
         if (type) {
             const typeResponse = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
             const typeData = await typeResponse.json();
-
             const pokemonList = typeData.pokemon.slice(0, 10);
             listData = { results: pokemonList.map((p: any) => p.pokemon) };
         } else {
@@ -169,6 +187,7 @@ async function fetchExtraPokemonList(type: string, setExtraPokemonList: (data: P
             const listResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${randomOffset}`);
             listData = await listResponse.json();
         }
+
         const pokemonPromises = listData.results.map(async (pokemon: PokemonListItem) => {
             const detailsResponse = await fetch(pokemon.url);
             return await detailsResponse.json();
@@ -181,14 +200,18 @@ async function fetchExtraPokemonList(type: string, setExtraPokemonList: (data: P
     }
 }
 
-
+// Componente principal
 export const PokemonList = ({ showExtra }: PokemonListProps) => {
-
     const [extraPokemonList, setExtraPokemonList] = useState<PokemonData[]>([]);
     const [pokemonList, setPokemonList] = useState<PokemonData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedType, setSelectedType] = useState<string>('');
     const { theme } = useContext(ThemeContext);
+
+    const shuffleList = () => {
+        setSelectedType(''); // reseta o filtro
+        fetchRandomPokemonlist(setPokemonList, setIsLoading); // força buscar lista aleatória
+    };
 
     useEffect(() => {
         if (selectedType) {
@@ -202,17 +225,16 @@ export const PokemonList = ({ showExtra }: PokemonListProps) => {
         if (showExtra) {
             fetchExtraPokemonList(selectedType, setExtraPokemonList);
         }
-    }, [showExtra]);
+    }, [showExtra, selectedType]);
 
-    if (isLoading) {
-        return <div>Carregando a lista de Pokémon...</div>;
-    } else {
-        return (
-            <>
-                <Filter
-                    onChange={(e) => setSelectedType(e.target.value)}
-                    value={selectedType}
-                >
+    if (isLoading) return <div>Carregando a lista de Pokémon...</div>;
+
+    return (
+        <>
+
+
+            <ListContent $bg={theme.background}>
+                <Filter $bg={theme.background} $color={theme.color} onChange={(e) => setSelectedType(e.target.value)} value={selectedType}>
                     <option value="">Todos os Tipos</option>
                     <option value="normal">Normal</option>
                     <option value="fighting">Fighting</option>
@@ -233,40 +255,37 @@ export const PokemonList = ({ showExtra }: PokemonListProps) => {
                     <option value="dark">Dark</option>
                     <option value="fairy">Fairy</option>
                 </Filter>
-                <ListContent bg={theme.background} color={theme.color}>
-                    <ListTitle>Lista de Pokemons</ListTitle>
-                    <StyledButton onClick={() => setSelectedType('')}>Shuffle List</StyledButton>
+                <ListTitle>Lista de Pokemons</ListTitle>
+                <StyledButton onClick={shuffleList}>Shuffle List</StyledButton>
 
-                    {pokemonList.map((pokemon) => (
-                        <Link key={pokemon.id} to={`/pokemon/${pokemon.id}`}>
-                            <PokemonContainer>
-                                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                                <PokemonName>{pokemon.name}</PokemonName>
-                                <CostumeList color={theme.color}>
-                                    {pokemon.types.map((type, index) => (
-                                        <li key={index}>{type.type.name}</li>
-                                    ))}
-                                </CostumeList>
-                            </PokemonContainer>
-                        </Link>
-                    ))}
+                {pokemonList.map((pokemon) => (
+                    <Link key={pokemon.id} to={`/pokemon/${pokemon.id}`}>
+                        <PokemonContainer>
+                            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                            <PokemonName>{pokemon.name}</PokemonName>
+                            <CostumeList $color={theme.color}>
+                                {pokemon.types.map((type, index) => (
+                                    <li key={index}>{type.type.name}</li>
+                                ))}
+                            </CostumeList>
+                        </PokemonContainer>
+                    </Link>
+                ))}
 
-                    {showExtra && extraPokemonList.map((pokemon) => (
-                        <Link key={pokemon.id} to={`/pokemon/${pokemon.id}`}>
-                            <PokemonContainer>
-                                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-                                <PokemonName>{pokemon.name}</PokemonName>
-                                <CostumeList color={theme.color}>
-                                    {pokemon.types.map((type, index) => (
-                                        <li key={index}>{type.type.name}</li>
-                                    ))}
-                                </CostumeList>
-                            </PokemonContainer>
-                        </Link>
-                    ))}
-                </ListContent>
-            </>
-        );
-    };
-
-}
+                {showExtra && extraPokemonList.map((pokemon) => (
+                    <Link key={pokemon.id} to={`/pokemon/${pokemon.id}`}>
+                        <PokemonContainer>
+                            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                            <PokemonName>{pokemon.name}</PokemonName>
+                            <CostumeList $color={theme.color}>
+                                {pokemon.types.map((type, index) => (
+                                    <li key={index}>{type.type.name}</li>
+                                ))}
+                            </CostumeList>
+                        </PokemonContainer>
+                    </Link>
+                ))}
+            </ListContent>
+        </>
+    );
+};
