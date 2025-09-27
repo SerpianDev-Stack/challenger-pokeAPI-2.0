@@ -1,47 +1,49 @@
 import { createGlobalStyle } from "styled-components";
 
+const base = import.meta.env.BASE_URL;
+
 export const GlobalStyle = createGlobalStyle`
   /* =========================================
      FONTS
   ========================================= */
   @font-face {
     font-family: 'Orbitron';
-    src: url('${import.meta.env.BASE_URL}fonts/Orbitron-Regular.ttf') format('truetype');
+    src: url("${base}fonts/Orbitron-Regular.ttf") format('truetype');
     font-weight: 400;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Orbitron';
-    src: url('${import.meta.env.BASE_URL}fonts/Orbitron-SemiBold.ttf') format('truetype');
+    src: url("${base}fonts/Orbitron-SemiBold.ttf") format('truetype');
     font-weight: 600;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Orbitron';
-    src: url('${import.meta.env.BASE_URL}fonts/Orbitron-Bold.ttf') format('truetype');
+    src: url("${base}fonts/Orbitron-Bold.ttf") format('truetype');
     font-weight: 700;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Open Sans Condensed';
-    src: url('${import.meta.env.BASE_URL}fonts/OpenSans_Condensed-Medium.ttf') format('truetype');
+    src: url("${base}fonts/OpenSans_Condensed-Medium.ttf") format('truetype');
     font-weight: 500;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Open Sans Condensed';
-    src: url('${import.meta.env.BASE_URL}fonts/OpenSans_Condensed-Bold.ttf') format('truetype');
+    src: url("${base}fonts/OpenSans_Condensed-Bold.ttf") format('truetype');
     font-weight: 700;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'Open Sans Condensed';
-    src: url('${import.meta.env.BASE_URL}fonts/OpenSans_Condensed-LightItalic.ttf') format('truetype');
+    src: url("${base}fonts/OpenSans_Condensed-LightItalic.ttf") format('truetype');
     font-weight: 300;
     font-style: italic;
   }
