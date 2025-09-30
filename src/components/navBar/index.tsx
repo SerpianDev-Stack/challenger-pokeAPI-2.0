@@ -42,7 +42,6 @@ const Logo = styled.h1`
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-transform: uppercase;
-  font-family: 'Orbitron';
 `;
 
 export const NavBar = ({ onToggleExtra, showExtra }: MenuProps) => {

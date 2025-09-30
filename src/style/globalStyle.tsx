@@ -1,54 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  /* =========================================
-     FONTS
-  ========================================= */
-  @font-face {
-    font-family: 'Orbitron';
-    src: url("/fonts/Orbitron-Regular.ttf") format('truetype');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Orbitron';
-    src: url("/fonts/Orbitron-SemiBold.ttf") format('truetype');
-    font-weight: 600;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Orbitron';
-    src: url("/fonts/Orbitron-Bold.ttf") format('truetype');
-    font-weight: 700;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Open Sans Condensed';
-    src: url("/fonts/OpenSans_Condensed-Medium.ttf") format('truetype');
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Open Sans Condensed';
-    src: url("/fonts/OpenSans_Condensed-Bold.ttf") format('truetype');
-    font-weight: 700;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Open Sans Condensed';
-    src: url("/fonts/OpenSans_Condensed-LightItalic.ttf") format('truetype');
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  /* =========================================
-     VARIÁVEIS DE CORES
-  ========================================= */
   :root {
     --navy-850: hsl(217, 28%, 15%);
     --navy-900: hsl(218, 28%, 13%);
@@ -60,9 +12,6 @@ export const GlobalStyle = createGlobalStyle`
     --white: hsl(0, 0%, 100%);
   }
 
-  /* =========================================
-     RESET GLOBAL
-  ========================================= */
   * {
     margin: 0;
     padding: 0;
@@ -77,8 +26,12 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: var(--navy-850);
     color: var(--white);
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     min-height: 100vh;
     width: 100%;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
   }
 `;

@@ -21,7 +21,6 @@ const DetailContainer = styled.div<DetailContainerProps>`
   max-width: 100vw;
   min-height: 100vh;
   display: flex;
-  font-family: 'Open Sans Condensed';
   flex-direction: column;
   align-items: center;
   justify-content: start;
@@ -57,7 +56,6 @@ const TypeTitle = styled.h3`
 
 const PokeName = styled.h3`
   font-size: 2rem;
-  font-family: 'Orbitron';
   text-transform: uppercase;
 `;
 

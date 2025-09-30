@@ -37,7 +37,6 @@ const ListTitle = styled.h2`
   font-size: 2rem;
   text-transform: uppercase;
   padding: 2rem;
-  font-family: 'Orbitron';
   background-image: linear-gradient(135deg, var(--teal-200), var(--cyan-500));
   -webkit-background-clip: text;
   background-clip: text;
@@ -58,13 +57,11 @@ const PokemonName = styled.h3`
   font-size: 1.5rem;
   color: var(--cyan-500);
   text-transform: uppercase;
-  font-family: 'Orbitron';
 `;
 
 const CostumeList = styled.ul<ComponentsProps>`
   list-style-type: none;
   text-transform: uppercase;
-  font-family: 'Open Sans Condensed';
   text-align: center;
   color: ${({ $color }) => $color};
 `;
@@ -83,7 +80,6 @@ const StyledButton = styled.button`
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.5px;
-  font-family: 'Open Sans Condensed';
   padding: 12px 24px;
   border-radius: 4px;
   cursor: pointer;

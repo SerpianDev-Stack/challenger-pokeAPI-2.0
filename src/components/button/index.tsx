@@ -14,7 +14,6 @@ color: var(--white);
 cursor:pointer;
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 transition: transform 0.2s ease, box-shadow 0.2s ease;
-font-family: 'Open Sans Condensed';
 font-size:1rem;
 text-transform: capitalize;
 
