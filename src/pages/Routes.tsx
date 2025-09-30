@@ -12,7 +12,7 @@ export const AppRoutes = () => {
     const toggleExtra = () => setShowExtra(prev => !prev);
 
     return (
-        <BrowserRouter basename="/challenger-pokeAPI-2.0">
+        <BrowserRouter>
             <Menu onToggleExtra={toggleExtra} showExtra={showExtra} />
             <Routes>
                 <Route path="/" element={<List showExtra={showExtra} />} />
