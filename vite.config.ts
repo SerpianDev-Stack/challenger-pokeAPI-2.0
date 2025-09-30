@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/challenger-pokeAPI-2.0/',
+  base: '/',
   plugins: [react()]
 });
