@@ -21,7 +21,12 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* ESSENCIAL para Jest + RTL */
+    "types": ["jest", "@testing-library/jest-dom"],
+    "esModuleInterop": true
   },
   "include": ["src"]
 }
+

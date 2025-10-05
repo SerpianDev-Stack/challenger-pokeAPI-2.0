@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import type { PokemonData } from "../list";
+import type { PokemonData } from "../../types/pokemon-types"
 import styled from "styled-components";
 import { ThemeContext } from "../../contexts/themeContext";
-import type { ComponentsProps } from "../list";
+import type { ComponentsProps } from "../../types/theme-types";
 
 type DetailContainerProps = ComponentsProps & {
   $bg: string;
@@ -30,12 +30,13 @@ const DetailContainer = styled.div<DetailContainerProps>`
   color: ${({ color }) => color};
 
   & img {
-    width: 15%;
+    width: 10rem;
   }
 `;
 
 const Description = styled.p`
   font-size: 1.5rem;
+  text-align:center;
 `;
 
 const StyledID = styled.p`

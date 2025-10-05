@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Menu } from "./Navbar";
-import { List } from "./List";
-import { Details } from "./PokemonDetails";
+import { Menu } from "../pages/navbar";
+import { List } from "../pages/home";
+import { Details } from "../pages/pokemon-details-page";
 import { useState } from "react";
 
 

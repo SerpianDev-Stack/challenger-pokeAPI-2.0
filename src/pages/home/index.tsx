@@ -1,4 +1,4 @@
-import { PokemonList } from "../components/list";
+import { PokemonList } from "../../components/list";
 
 interface ListProps {
   showExtra: boolean;

@@ -3,7 +3,7 @@ import { GenericButton } from "../button";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/themeContext";
-import type { ComponentsProps } from "../list";
+import type { ComponentsProps } from "../../types/theme-types";
 
 interface MenuProps {
   onToggleExtra: () => void;
@@ -23,6 +23,18 @@ const Navegation = styled.nav<NavegationProps>`
   background: ${({ $bg }) => $bg};
   padding: 0 4rem;
   // border:1px solid white;
+
+   @media (max-width: 914px) {
+height: auto;
+flex-direction:column;
+align-items:center;
+padding: 2rem 4rem;
+gap:1.5rem;
+}
+
+ @media (max-width: 375px) {
+    padding: 2rem 1rem; // Reduz o padding lateral para telas muito pequenas
+  }
 `;
 
 const ContainerButton = styled.div`
@@ -31,6 +43,14 @@ const ContainerButton = styled.div`
   gap: 2rem;
   width: auto;
   height: 100%;
+
+  @media (max-width: 914px) {
+  flex-direction:column;
+  align-items: center;
+
+   @media (max-width: 375px) {
+    padding: 2rem 1rem; // Reduz o padding lateral para telas muito pequenas
+  }
 `;
 
 const Logo = styled.h1`

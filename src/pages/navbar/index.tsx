@@ -1,4 +1,4 @@
-import { NavBar } from "../components/navBar";
+import { NavBar } from "../../components/navBar";
 
 interface MenuProps {
   onToggleExtra: () => void;
